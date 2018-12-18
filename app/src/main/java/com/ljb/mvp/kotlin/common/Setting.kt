@@ -5,7 +5,7 @@ import com.ljb.mvp.kotlin.utils.SPUtils
 
 
 /** 服务器Host */
-const val HTTP_API_DOMAIN = "https://mobile.cn-healthcare.com/appserver/"
+const val HTTP_API_DOMAIN = " "
 
 /** Log */
 val LOG_DEBUG = BuildConfig.DEBUG
