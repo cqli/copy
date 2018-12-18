@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ljb.mvp.kotlin.widget.CountDownProgressBar
+        android:id="@+id/downText"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        app:countDown_centerTextColor="#2395FF"
+        app:countDown_centerTextSize="13sp"
+        app:countDown_circleWidth="4dp"
+        app:countDown_firstColor="#ccc"
+        app:countDown_isShowGradient="true"
+        app:countDown_secondColor="#239" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_buttom" />
+
+    <RelativeLayout
+        android:id="@+id/rl_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="#333">
+
+    </RelativeLayout>
+</RelativeLayout>

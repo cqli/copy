@@ -3,6 +3,7 @@ package com.ljb.mvp.kotlin.protocol.http
 import com.ljb.mvp.kotlin.domain.*
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -14,6 +15,8 @@ interface IUserHttpProtocol {
     @GET("/users/{userName}")
     fun getUserInfoByName(@Path("userName") userName: String): Observable<User?>
 
+    @POST("phone/ugm4_ugcCates.xhtml")
+    fun getCate(): Observable<String?>
     /**
      * @param userName 用户名
      * @param page 页码

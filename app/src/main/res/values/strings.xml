@@ -1,12 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MVP-Kotlin</string>
+    <string name="app_name">北斗学院</string>
     <string name="github_user">Github username</string>
     <string name="login">Login</string>
     <string name="input_user">Input github username</string>
     <string name="net_error">Net error</string>
-    <string name="repos">Repos</string>
-    <string name="my">My</string>
-    <string name="following">Following</string>
+    <string name="repos">分类</string>
+    <string name="college_tab">首页</string>
+    <string name="my">我的</string>
+    <string name="following">学习</string>
     <string name="logout">Logout</string>
     <string name="events">Events</string>
     <string name="starred">Starred</string>

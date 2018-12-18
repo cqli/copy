@@ -4,12 +4,15 @@ import android.app.Activity
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
+import com.githang.statusbar.StatusBarCompat
+import com.ljb.mvp.kotlin.R
 
 abstract class BaseActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        StatusBarCompat.setStatusBarColor(this, resources.getColor(R.color.colorWhite))
         init(savedInstanceState)
         initView()
         initData()

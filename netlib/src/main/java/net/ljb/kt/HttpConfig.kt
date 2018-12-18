@@ -2,6 +2,9 @@ package net.ljb.kt
 
 import net.ljb.kt.utils.NetLog
 
+/**
+ * 网络请求配置
+ */
 object HttpConfig {
     private var mHeaderMap: Map<String, String>? = null
     private var mParamMap: Map<String, String>? = null

@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.ljb.mvp.kotlin"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 22
         versionCode 100
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -53,6 +53,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.githang:status-bar-compat:0.7'
     //mvp
     implementation project(':mvplib')
     //net

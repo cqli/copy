@@ -3,6 +3,8 @@ package com.ljb.mvp.kotlin.common.act
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
+import com.githang.statusbar.StatusBarCompat
+import com.ljb.mvp.kotlin.R
 import mvp.ljb.kt.contract.IPresenterContract
 import com.ljb.mvp.kotlin.common.listener.FragmentOnBackListener
 import mvp.ljb.kt.view.MvpFragmentActivity
@@ -12,6 +14,7 @@ abstract class BaseFragmentActivity<out P : IPresenterContract> : MvpFragmentAct
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        StatusBarCompat.setStatusBarColor(this, resources.getColor(R.color.colorWhite))
         init(savedInstanceState)
         initView()
         initData()
