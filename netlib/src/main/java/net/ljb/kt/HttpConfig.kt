@@ -8,7 +8,9 @@ import net.ljb.kt.utils.NetLog
 object HttpConfig {
     private var mHeaderMap: Map<String, String>? = null
     private var mParamMap: Map<String, String>? = null
-    private var mBaseUrl: String = ""
+    private var mBaseUrl: String = "https://course.hundun.cn"//课程搜索
+//    private var mBaseUrl: String = "https://user.hundun.cn"//登陆
+
     private var isLog: Boolean = false
 
     fun init(baseUrl: String, headers: Map<String, String>? = null, params: Map<String, String>? = null, isLog: Boolean = false) {

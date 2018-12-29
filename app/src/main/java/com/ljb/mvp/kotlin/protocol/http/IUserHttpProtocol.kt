@@ -1,11 +1,14 @@
 package com.ljb.mvp.kotlin.protocol.http
 
 import com.ljb.mvp.kotlin.domain.*
+import com.ljb.mvp.kotlin.resultbean.BaseResult
+import com.ljb.mvp.kotlin.resultbean.HttpResult
+import com.ljb.mvp.kotlin.resultbean.course.ExerciseRuleInfo
+import com.ljb.mvp.kotlin.resultbean.course.SearchResult
+import io.reactivex.Flowable
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface IUserHttpProtocol {
     /**
@@ -17,6 +20,19 @@ interface IUserHttpProtocol {
 
     @POST("phone/ugm4_ugcCates.xhtml")
     fun getCate(): Observable<String?>
+
+    //获取课程详情
+    @GET("get_course_detail")
+    fun getCourseMeta(@Query("course_id") paramString: String): Observable<HttpResult<ExerciseRuleInfo>>
+
+    //搜索课程
+    @GET("/search/main_study_search")
+    fun searchCourse(@QueryMap paramsMap: Map<String, String>): Observable<SearchResult>
+
+    //搜索课程
+    @POST("/login")
+    fun login(  @Body body: RequestBody ): Observable<String>
+
     /**
      * @param userName 用户名
      * @param page 页码

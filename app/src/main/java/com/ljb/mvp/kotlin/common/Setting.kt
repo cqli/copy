@@ -5,7 +5,8 @@ import com.ljb.mvp.kotlin.utils.SPUtils
 
 
 /** 服务器Host */
-const val HTTP_API_DOMAIN = " "
+const val HTTP_API_DOMAIN = "https://course.hundun.cn"//课程搜索
+//const val HTTP_API_DOMAIN = "https://user.hundun.cn"//登陆
 
 /** Log */
 val LOG_DEBUG = BuildConfig.DEBUG

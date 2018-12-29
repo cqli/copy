@@ -48,7 +48,7 @@ object HttpClient {
         val logInterceptor = HttpLoggingInterceptor { NetLog.d(it) }
         logInterceptor.level = HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder()
-                .sslSocketFactory(createSSLSocketFactory())
+                .sslSocketFactory(createSSLSocketFactory(),TrustAllCerts())
                 .hostnameVerifier { _, _ -> true }
                 .addInterceptor(logInterceptor)
                 .addInterceptor(AddGlobalParamInterceptor())
@@ -58,7 +58,7 @@ object HttpClient {
 
     private val mLongTimeHttpClient by lazy {
         OkHttpClient.Builder()
-                .sslSocketFactory(createSSLSocketFactory())
+                .sslSocketFactory(createSSLSocketFactory(),TrustAllCerts())
                 .hostnameVerifier { _, _ -> true }
                 .connectTimeout(DEFAULT_DOWN_TIME_OUT, TimeUnit.MILLISECONDS)
                 .readTimeout(DEFAULT_DOWN_TIME_OUT, TimeUnit.MILLISECONDS)

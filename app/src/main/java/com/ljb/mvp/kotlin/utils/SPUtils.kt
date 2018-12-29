@@ -81,4 +81,70 @@ object SPUtils {
         return instance!!.getStringSet(key, null)
     }
 
+    private val APP_NAME = "yanxishe"
+
+    fun getBooleanValue(paramString: String, paramContext: Context): Boolean {
+        try {
+            return paramContext.getSharedPreferences("yanxishe", 0).getBoolean(paramString, false)
+        } catch (localException: Exception) {
+        }
+
+        return false
+    }
+
+    fun getFloatValue(paramString: String, paramContext: Context): Float {
+        try {
+            return paramContext.getSharedPreferences("yanxishe", 0).getFloat(paramString, 0.0f)
+        } catch (localException: Exception) {
+        }
+
+        return 0.0f
+    }
+
+    fun getIntValue(paramString: String, paramContext: Context): Int {
+        try {
+            return paramContext.getSharedPreferences("yanxishe", 0).getInt(paramString, 0)
+        } catch (localException: Exception) {
+        }
+
+        return 0
+    }
+
+    fun getLongValue(paramString: String, paramContext: Context): Long {
+        try {
+            return paramContext.getSharedPreferences("yanxishe", 0).getLong(paramString, 0L)
+        } catch (localException: Exception) {
+        }
+
+        return 0L
+    }
+
+    fun getStringValue(paramString: String, paramContext: Context): String? {
+        try {
+            return paramContext.getSharedPreferences("yanxishe", 0).getString(paramString, "")
+        } catch (localException: Exception) {
+        }
+
+        return null
+    }
+
+    fun setBooleanValue(paramString: String, paramBoolean: Boolean, paramContext: Context) {
+        paramContext.getSharedPreferences("yanxishe", 0).edit().putBoolean(paramString, paramBoolean).apply()
+    }
+
+    fun setFloatValue(paramString: String, paramFloat: Float, paramContext: Context) {
+        paramContext.getSharedPreferences("yanxishe", 0).edit().putFloat(paramString, paramFloat).apply()
+    }
+
+    fun setIntValue(paramString: String, paramInt: Int, paramContext: Context) {
+        paramContext.getSharedPreferences("yanxishe", 0).edit().putInt(paramString, paramInt).apply()
+    }
+
+    fun setLongValue(paramString: String, paramLong: Long, paramContext: Context) {
+        paramContext.getSharedPreferences("yanxishe", 0).edit().putLong(paramString, paramLong).apply()
+    }
+
+    fun setStringValue(paramString1: String, paramString2: String, paramContext: Context) {
+        paramContext.getSharedPreferences("yanxishe", 0).edit().putString(paramString1, paramString2).apply()
+    }
 }
