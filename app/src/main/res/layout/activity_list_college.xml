@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:padding="5dp"
-            android:text="搜索" />
+            android:text="搜索课程id" />
 
         <Button
             android:id="@+id/btCancel"
@@ -31,9 +31,29 @@
             android:padding="5dp"
             android:text="取消" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
 
+        <EditText
+            android:id="@+id/etCourID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btVideoSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="搜索视频id" />
+
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

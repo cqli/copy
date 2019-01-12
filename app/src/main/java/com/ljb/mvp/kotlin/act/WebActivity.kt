@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.webkit.WebView
 import com.ljb.mvp.kotlin.R
 import com.ljb.mvp.kotlin.common.act.BaseActivity
+import com.ljb.mvp.kotlin.utils.ParseWebUrlHelper
 import com.ljb.mvp.kotlin.widget.webview.SimpleWebActionCallBack
 import com.ljb.mvp.kotlin.widget.webview.WebActionCallBack
 import com.ljb.mvp.kotlin.widget.webview.WebViewProxy
@@ -38,12 +40,13 @@ class WebActivity : BaseActivity() {
     private var mTitle: String? = null
     private var mUrl: String? = null
     private lateinit var mProxy: WebViewProxy
+    var parseWebUrlHelper: ParseWebUrlHelper? = null
 
     override fun getLayoutId() = R.layout.activity_web
 
     override fun init(savedInstanceState: Bundle?) {
         mTitle = intent.getStringExtra(KEY_TITLE)
-        mUrl = intent.getStringExtra(KEY_URL)
+        mUrl = "https:www.hundun.cn/course_video/detail?course_id=6d18d7ceb51a12044138eee9a898d798&backplay=1"
         if (TextUtils.isEmpty(mUrl)) finish()
     }
 
@@ -55,6 +58,18 @@ class WebActivity : BaseActivity() {
         mProxy = WebViewProxy(this, webview, page_layout, object : SimpleWebActionCallBack() {
             override fun onReceivedTitle(view: WebView?, title: String?) {
                 if (TextUtils.isEmpty(mTitle)) tv_title.text = title
+            }
+        })
+        parseWebUrlHelper = ParseWebUrlHelper()
+        parseWebUrlHelper?.init(this, mUrl)
+        parseWebUrlHelper?.setOnParseListener(object : ParseWebUrlHelper.OnParseWebUrlListener {
+            override fun onFindUrl(url: String?) {
+
+                Log.e("lcq", url)
+            }
+
+            override fun onError(errorMsg: String?) {
+
             }
         })
     }

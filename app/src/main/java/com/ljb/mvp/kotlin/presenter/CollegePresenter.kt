@@ -22,9 +22,11 @@ class CollegePresenter : BaseRxLifePresenter<CollegeContract.IView>(),
         CollegeContract.IPresenter {
     override fun getData() {
         val localMap: HashMap<String, String> = HttpUtils.addToGet() as HashMap<String, String>
-        localMap.put("sc_query", "为什么聪明人也会做蠢事")
-        localMap.put("page", "0")
-        HttpFactory.getProtocol(IUserHttpProtocol::class.java, false).searchCourse(localMap)
+//        localMap.put("sc_query", "为什么聪明人也会做蠢事")
+//        localMap.put("page", "0")
+
+        localMap.put("course_id", "2a9de999301644ce4e47f2bd4e44758d")
+        HttpFactory.getProtocol(IUserHttpProtocol::class.java, true).getCourseDetail(localMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeEx(onNext = {

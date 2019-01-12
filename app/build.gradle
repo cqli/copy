@@ -58,6 +58,8 @@ dependencies {
     implementation project(':mvplib')
     //net
     implementation project(':netlib')
+    implementation project(path: ':LibZxing')
+    implementation files('lib/sun.misc.BASE64Decoder.jar')
 }
 repositories {
     mavenCentral()

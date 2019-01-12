@@ -25,20 +25,30 @@ import net.ljb.kt.client.HttpFactory
 
 class CollegeListActivity : FragmentActivity(), LoadMoreRecyclerAdapter.OnItemClickListener {
     override fun onItemClick(view: View, position: Int) {
-        val uri = Uri.parse("https://www.hundun.cn/course_video/detail?course_id=${list!![position].courseId}&backplay=1")
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-        intent.putExtra(Browser.EXTRA_APPLICATION_ID, getPackageName())
-        try {
+        if (isCourseID){
+
+            val uri = Uri.parse("https://www.hundun.cn/course_video/detail?course_id=${list!![position].courseId}&backplay=1")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            intent.putExtra(Browser.EXTRA_APPLICATION_ID, getPackageName())
+            try {
+                startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("URLSpan", "Actvity was not found for intent, " + intent.toString())
+            }
+        }else{
+            var intent = Intent(this,VideoDetailAct::class.java)
+            intent.putExtra("courseID",courseID)
+            intent.putExtra("videoId", list!![position].courseId)
             startActivity(intent)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Log.e("URLSpan", "Actvity was not found for intent, " + intent.toString())
         }
 
 //        WebActivity.startActivity(this, "https://www.hundun.cn/course_video/detail?course_id=${list!![position].courseId}&backplay=1", list!![position].name)
     }
+    var courseID = ""
 
     var list: MutableList<College>? = null
+    var isCourseID : Boolean = false
     private val mAdapter by lazy { CollegeListAdapter(this, mutableListOf()) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,22 +68,61 @@ class CollegeListActivity : FragmentActivity(), LoadMoreRecyclerAdapter.OnItemCl
             mAdapter.mData.addAll(list!!)
             mAdapter.notifyDataSetChanged()
         }
+        btVideoSearch.setOnClickListener {
+            val localMap: HashMap<String, String> = HttpUtils.addToGet() as HashMap<String, String>
+//            课程详细信息
+            localMap.put("course_id", etCourID.text.toString())
+//        //视频ID 视频url
+//        localMap.put("video_id", "2b9b481ca78aa3dd705c74e80acd8836")
+//        localMap.put("clarity", "1")
+//        //视频ID 视频url
+//        localMap.put("video_id", "2b9b481ca78aa3dd705c74e80acd8836")
+//        localMap.put("course_id", "2a9de999301644ce4e47f2bd4e44758d")
+            HttpFactory.getProtocol(IUserHttpProtocol::class.java, false).getCourseDetail(localMap)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeEx(onNext = {
+                        Log.e("lcq", it.toString())
+                        isCourseID = false
+                        var listSearch: MutableList<College> = mutableListOf()
+                        it.course_detail.i18n_directory[0].directory.forEach {
+                            listSearch.add(College(it.title, it.video_id))
+                        }
+                        list = listSearch
+                        mAdapter.mData.clear()
+                        mAdapter.mData.addAll(listSearch!!)
+                        mAdapter.notifyDataSetChanged()
+                    })
+        }
         initData()
     }
 
     fun getSearchData(key: String) {
         val localMap: HashMap<String, String> = HttpUtils.addToGet() as HashMap<String, String>
+        //搜索
         localMap.put("sc_query", key)
         localMap.put("page", "0")
+        //课程详细信息
+//        localMap.put("course_id", "2a9de999301644ce4e47f2bd4e44758d")
+//        //视频ID 视频url
+//        localMap.put("video_id", "2b9b481ca78aa3dd705c74e80acd8836")
+//        localMap.put("clarity", "1")
+//        //视频ID 视频url
+//        localMap.put("video_id", "2b9b481ca78aa3dd705c74e80acd8836")
+//        localMap.put("course_id", "2a9de999301644ce4e47f2bd4e44758d")
         HttpFactory.getProtocol(IUserHttpProtocol::class.java, false).searchCourse(localMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeEx(onNext = {
                     Log.e("lcq", it.toString())
+                    isCourseID = true
                     var listSearch: MutableList<College> = mutableListOf()
+                    etCourID.setText(it.data.course_list[0].course_id.toString())
+                    courseID = it.data.course_list[0].course_id.toString()
                     it.data.course_list.forEach {
                         listSearch.add(College(it.title, it.course_id))
                     }
+                    list = listSearch
                     mAdapter.mData.clear()
                     mAdapter.mData.addAll(listSearch!!)
                     mAdapter.notifyDataSetChanged()

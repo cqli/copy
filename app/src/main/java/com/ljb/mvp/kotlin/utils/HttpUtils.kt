@@ -57,10 +57,9 @@ class HttpUtils {
             var0.addHeader("clientType", phoneType + "_" + androidSDKVersion)
             var0.addHeader("imei", getImei(var1))
             var0.addHeader("net", "cmwap")
-            val var6 = HunDunSP.getUserid(var1)
-            if (var6 != null && !TextUtils.isEmpty(var6)) {
+//            val var6 = HunDunSP.getUserid(var1)
+            val var6  = "136c410fa193c38528870125ace273bd"
                 var0.addHeader("user_id", var6!!)
-            }
 
             val var7 = HunDunSP.getAppModel(KotlinMVPApplication.mContext!!)
             if (!TextUtils.isEmpty(var7)) {
@@ -79,7 +78,7 @@ class HttpUtils {
             paramBasePostEntity.appChannel = VersionUtils.getChannel()
             val str1 = HunDunSP.getUserid(KotlinMVPApplication.mContext!!)
             if (str1 != null && !TextUtils.isEmpty(str1))
-                paramBasePostEntity.user_id = str1
+                paramBasePostEntity.user_id = "136c410fa193c38528870125ace273bd"
             paramBasePostEntity.net = "cmwap"
             val str2 = HunDunSP.getAppModel(KotlinMVPApplication.mContext!!)
             if (!TextUtils.isEmpty(str2))
@@ -96,7 +95,7 @@ class HttpUtils {
             var0.put("imei", this!!.getImei(KotlinMVPApplication.mContext)!!)
             val var5 = HunDunSP.getUserid(KotlinMVPApplication.mContext!!)
             if (var5 != null && !TextUtils.isEmpty(var5)) {
-                var0.put("user_id", var5)
+                var0.put("user_id", "136c410fa193c38528870125ace273bd")
             }
 
             val var6 = HunDunSP.getAppModel(KotlinMVPApplication.mContext!!)
@@ -115,7 +114,7 @@ class HttpUtils {
 
         fun buildWebViewBaseUrl(var0: String, var1: Context): String {
             val var2 = StringBuilder()
-            var2.append(var0).append("user_id=").append(HunDunSP.getUserid(var1)).append("&versionName=").append(VersionUtils.getVersionName(var1)).append("&net=").append("cmwap").append("&clientType=").append(phoneType).append("_").append(androidSDKVersion).append("&imei=").append(getImei(var1)).append("&phone=").append(HunDunSP.getPhone(var1)).append("&app_role=").append(HunDunSP.getAppModel(var1))
+            var2.append(var0).append("user_id=").append("136c410fa193c38528870125ace273bd").append("&versionName=").append(VersionUtils.getVersionName(var1)).append("&net=").append("cmwap").append("&clientType=").append(phoneType).append("_").append(androidSDKVersion).append("&imei=").append(getImei(var1)).append("&phone=").append(HunDunSP.getPhone(var1)).append("&app_role=").append(HunDunSP.getAppModel(var1))
             return var2.toString()
         }
 
